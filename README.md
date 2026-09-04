@@ -1,6 +1,6 @@
 # VueloVista Mirador
 
-Your lookout on the sky with VFR chart overlays on a selectable basemap (OSM, Carto Positron/Dark Matter, OpenTopoMap, Esri World Imagery), with pluggable live layers (traffic today; weather/radar later) and theme plugins for UI chrome. Charts sit opaque over the basemap so nothing shines through where coverage exists; outside chart bounds (and punched chart padding) the basemap remains visible.
+ See live air traffic above you, or anywhere in the world. With VFR chart overlays on a selectable basemap (OSM, Carto Positron/Dark Matter, OpenTopoMap, Esri World Imagery), with pluggable live layers (traffic today; weather/radar later) and theme plugins for UI chrome. Charts sit opaque over the basemap so nothing shines through where coverage exists; outside chart bounds (and punched chart padding) the basemap remains visible.
 
 One React + Leaflet codebase targets:
 
