@@ -221,6 +221,12 @@ const MapView = () => {
     )
     mapInstanceRef.current = map
 
+    const invalidateMapSize = () => map.invalidateSize({ pan: false })
+    const initialInvalidateTimer = window.setTimeout(invalidateMapSize, 0)
+    const delayedInvalidateTimer = window.setTimeout(invalidateMapSize, 300)
+    window.addEventListener('resize', invalidateMapSize)
+    window.visualViewport?.addEventListener('resize', invalidateMapSize)
+
     const basePane = ensurePriorityPane(map, LayerPriority.BASE)
     basePaneRef.current = basePane
     ownshipPaneRef.current = ensurePriorityPane(map, LayerPriority.OWNSHIP)
@@ -281,6 +287,10 @@ const MapView = () => {
       }
       map.off('moveend', persist)
       map.off('zoomend', persist)
+      window.clearTimeout(initialInvalidateTimer)
+      window.clearTimeout(delayedInvalidateTimer)
+      window.removeEventListener('resize', invalidateMapSize)
+      window.visualViewport?.removeEventListener('resize', invalidateMapSize)
       map.remove()
       mapInstanceRef.current = null
       layersRef.current = {}
