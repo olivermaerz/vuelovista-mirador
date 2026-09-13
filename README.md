@@ -8,9 +8,9 @@ Map plugins, themes, networking, and a local SQLite layer live under `src/`. The
 
 ## Screenshot
 
-![App screenshot](assets/screenshot.png)
+<a href="assets/screenshot.png"><img src="assets/screenshot.png" alt="App screenshot" width="480"/></a>
 
-_A screenshot of the app showing the map view._
+_Thumbnail preview — click to view full size (assets/screenshot.png)._
 
 ## Map layer priorities
 
