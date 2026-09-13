@@ -1,10 +1,16 @@
 # VueloVista Mirador
 
-Check out the air traffic in the sky. Live ADS-B on a map, plus VFR charts for USA and Austria over a basemap you pick (OSM, Carto Positron/Dark Matter, OpenTopoMap, Esri World Imagery). Weather and radar layers can plug in later. Charts sit opaque over the basemap so nothing shines through where they cover; outside that, you still see the map.
+Check out the air traffic in the sky. Live ADS-B on a map, plus VFR charts for USA and Austria over a basemap you pick (OSM, Carto Positron/Dark Matter, OpenTopoMap, Esri World Imagery). Weather and other overlays fill in situational awareness.
 
 One React + Leaflet app, shipped as iOS and Android via Capacitor. `yarn dev` is the same UI in a browser while you work.
 
 Map plugins, themes, networking, and a local SQLite layer live under `src/`. The native projects just do packaging, permissions, and native SQLite/HTTP.
+
+## Screenshot
+
+![App screenshot](assets/screenshot.png)
+
+_A screenshot of the app showing the map view._
 
 ## Map layer priorities
 
@@ -23,7 +29,7 @@ Overlays are plugins with a numeric **priority** (higher draws on top). Bands le
 | TRACK | 550 | recorded track (later) |
 | OWNSHIP | 600 | “you are here” marker |
 
-**Themes** (`src/themes/`) set panel colors, transparency, and blur via CSS variables. Map plugins can expose themable color keys (e.g. traffic aircraft fill) with fixed defaults; keys marked `themable: false` (emergency squawks) ignore theme overrides.
+**Themes** (`src/themes/`) set panel colors, transparency, and blur via CSS variables. Map plugins can expose themable color keys (e.g. traffic aircraft fill) with fixed defaults; keys marked `the...`
 
 ## Scripts
 
@@ -43,7 +49,7 @@ In the browser, same-origin proxy paths (`/adsblol-proxy`, `/adsbdb-proxy`, `/st
 
 On Capacitor, [`src/net/http.js`](src/net/http.js) rewrites those paths to the real hosts and attaches headers via `CapacitorHttp`.
 
-IGN France chart layers are registered but stay hidden until you confirm provider approval/licence under **Licensed charts** in the controls panel. Educational DFS / DL.cz samples live under [`edu/`](edu/) and are not shipped.
+IGN France chart layers are registered but stay hidden until you confirm provider approval/licence under **Licensed charts** in the controls panel. Educational DFS / DL.cz samples live under [`edu...`]
 
 ## Local database
 
@@ -54,7 +60,7 @@ IGN France chart layers are registered but stay hidden until you confirm provide
 | Web (dev) | `@sqlite.org/sqlite-wasm` (`JsStorageDb` / localStorage) |
 | iOS / Android | `@capacitor-community/sqlite` |
 
-Schema covers airports, runways, frequencies (for future ATC listen menus), navaids, airspaces, waypoints, track sessions/points, bookmarks, settings, and offline artifact metadata. Repositories query empty for now; seed imports (OurAirports / OpenAIP, etc.) are still to do.
+Schema covers airports, runways, frequencies (for future ATC listen menus), navaids, airspaces, waypoints, track sessions/points, bookmarks, settings, and offline artifact metadata. Repositories q...
 
 `openDatabase()` runs on app start from [`src/main.jsx`](src/main.jsx).
 
