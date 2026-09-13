@@ -90,11 +90,6 @@ export const creditSections = [
         note: 'iOS / Android shells',
       },
       {
-        name: 'Tauri',
-        url: 'https://tauri.app',
-        note: 'Desktop shells',
-      },
-      {
         name: 'SQLite',
         url: 'https://sqlite.org',
         note: 'Local-first reference / user data',

@@ -9,7 +9,6 @@ export default defineConfig([
     'dist',
     'android',
     'ios',
-    'src-tauri/target',
     'edu',
   ]),
   {

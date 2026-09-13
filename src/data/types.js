@@ -4,7 +4,7 @@
  */
 
 /**
- * Minimal SQL adapter shared by web / Capacitor / Tauri.
+ * Minimal SQL adapter shared by web / Capacitor.
  * @typedef {Object} DbAdapter
  * @property {(sql: string, params?: unknown[]) => Promise<void>} execute
  * @property {(sql: string, params?: unknown[]) => Promise<Record<string, unknown>[]>} select

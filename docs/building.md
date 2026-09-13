@@ -1,10 +1,10 @@
-# Building Mirador for each platform
+# Building Mirador
 
-One React + Leaflet app under `src/`. Shells wrap the Vite `dist/` build (or the Vite dev server for desktop/web iteration).
+One React + Leaflet app under `src/`. Capacitor wraps the Vite `dist/` build for iOS and Android. `yarn dev` is the same UI in a browser.
 
 Use the Node version in [`.nvmrc`](../.nvmrc) (`nvm use`), then `yarn install` once at the repo root.
 
-## Web
+## Web (dev)
 
 | Goal | Command |
 |------|---------|
@@ -12,7 +12,7 @@ Use the Node version in [`.nvmrc`](../.nvmrc) (`nvm use`), then `yarn install` o
 | Production assets | `yarn build` |
 | Serve `dist/` with tile/ADSB proxies | `yarn start` |
 
-Output: `dist/`. No native toolchain required.
+Output: `dist/`. No native toolchain required. This is how you iterate on the UI; the phone apps load that same build.
 
 Proxies (`/adsblol-proxy`, `/adsbdb-proxy`, `/standing-data-proxy`) are provided by Vite in dev/preview and by `scripts/serve.mjs` for `yarn start`. Optional edu samples (e.g. DL.cz) document their own proxy wiring under `edu/`.
 
@@ -44,30 +44,12 @@ In Android Studio: sync Gradle if prompted, pick an emulator or device, Run.
 
 Location permissions are in `android/app/src/main/AndroidManifest.xml`. Same sync rule as iOS: rebuild/sync after frontend changes.
 
-## Desktop — macOS, Windows, Linux (Tauri 2)
-
-**Needs:** [Rust](https://rustup.rs/) (`rustc`, `cargo`), platform C/C++ build tools (Xcode CLT on macOS; MSVC Build Tools on Windows; usual GTK/WebKit deps on Linux — see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/)).
-
-| Goal | Command |
-|------|---------|
-| Dev (starts Vite + native window) | `yarn tauri:dev` |
-| Release installers / binaries | `yarn tauri:build` |
-
-Rust project: `src-tauri/`. Frontend dist is configured in `src-tauri/tauri.conf.json` (`frontendDist: ../dist`, `devUrl: http://localhost:5173`).
-
-Packaged apps use the Tauri `proxy_fetch` command (allowlisted hosts) instead of the Node proxy. Replace placeholder icons under `src-tauri/icons/` with:
-
-```bash
-yarn tauri icon path/to/app-icon.png
-```
-
 ## Quick reference
 
 | Platform | Build / sync | Open / run |
 |----------|----------------|------------|
-| Web | `yarn build` | `yarn start` or host `dist/` |
+| Web (dev) | `yarn build` | `yarn start` or host `dist/` |
 | iOS | `yarn build:mobile` | `yarn cap:ios` → Xcode Run |
 | Android | `yarn build:mobile` | `yarn cap:android` → Android Studio Run |
-| Desktop | `yarn tauri:build` | installers under `src-tauri/target/release/bundle/` |
 
-Shared app code never forks per OS. Platform-specific pieces are Capacitor/`ios`/`android`, `src-tauri`, and the adapters in `src/platform`, `src/net`, and `src/data/adapters`.
+Shared app code never forks per OS. Platform-specific pieces are Capacitor/`ios`/`android` and the adapters in `src/platform`, `src/net`, and `src/data/adapters`.
