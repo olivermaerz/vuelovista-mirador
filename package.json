@@ -2,7 +2,7 @@
   "name": "vuelovista-mirador",
   "private": true,
   "version": "0.0.0",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,9 +12,7 @@
     "start": "node scripts/serve.mjs",
     "build:mobile": "vite build && npx cap sync",
     "cap:ios": "npx cap open ios",
-    "cap:android": "npx cap open android",
-    "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "cap:android": "npx cap open android"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^8.1.0",
@@ -25,15 +23,12 @@
     "@capacitor/geolocation": "^8.2.0",
     "@capacitor/ios": "^8.5.0",
     "@sqlite.org/sqlite-wasm": "^3.53.0-build1",
-    "@tauri-apps/api": "^2.11.1",
-    "@tauri-apps/plugin-sql": "^2.4.0",
     "leaflet": "^1.9.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@tauri-apps/cli": "^2.11.4",
     "@types/leaflet": "^1.9.22",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",

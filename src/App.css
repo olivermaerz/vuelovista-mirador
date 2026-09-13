@@ -161,6 +161,36 @@ body,
   color: var(--theme-panel-text-muted);
 }
 
+.about-modal-license-toggle {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--theme-accent);
+  cursor: pointer;
+  text-align: left;
+}
+
+.about-modal-license-toggle:hover {
+  text-decoration: underline;
+}
+
+.about-license {
+  margin: 0 0 12px;
+  max-height: min(36vh, 280px);
+  padding: 10px 12px;
+  overflow: auto;
+  border: 1px solid var(--theme-control-border);
+  border-radius: calc(var(--theme-radius) - 2px);
+  background-color: var(--theme-control-bg);
+  color: var(--theme-control-text);
+  font: 450 11px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .about-credits {
   display: flex;
   flex-direction: column;

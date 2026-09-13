@@ -1,6 +1,13 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { APP_BLURB, APP_COPYRIGHT, APP_LICENSE, APP_NAME, APP_VERSION } from '../appMeta.js'
+import {
+  APP_BLURB,
+  APP_COPYRIGHT,
+  APP_LICENSE,
+  APP_LICENSE_TEXT,
+  APP_NAME,
+  APP_VERSION,
+} from '../appMeta.js'
 import { creditSections } from '../credits.js'
 
 const CreditLink = ({ item }) => {
@@ -14,12 +21,15 @@ const CreditLink = ({ item }) => {
 
 const AboutModal = ({ open, onClose }) => {
   const titleId = useId()
+  const licenseId = useId()
   const closeRef = useRef(null)
   const [view, setView] = useState('about')
+  const [licenseOpen, setLicenseOpen] = useState(false)
 
   useEffect(() => {
     if (!open) return undefined
     setView('about')
+    setLicenseOpen(false)
 
     const onKey = (event) => {
       if (event.key === 'Escape') onClose()
@@ -100,7 +110,20 @@ const AboutModal = ({ open, onClose }) => {
             </h1>
             <p className="about-modal-blurb">{APP_BLURB}</p>
             <p className="about-modal-meta">Version {APP_VERSION}</p>
-            <p className="about-modal-meta">{APP_LICENSE}</p>
+            <button
+              type="button"
+              className="about-modal-meta about-modal-license-toggle"
+              aria-expanded={licenseOpen}
+              aria-controls={licenseOpen ? licenseId : undefined}
+              onClick={() => setLicenseOpen((openLicense) => !openLicense)}
+            >
+              {APP_LICENSE}
+            </button>
+            {licenseOpen ? (
+              <pre id={licenseId} className="about-license" tabIndex={0}>
+                {APP_LICENSE_TEXT}
+              </pre>
+            ) : null}
             <p className="about-modal-copyright">{APP_COPYRIGHT}</p>
             <button
               type="button"

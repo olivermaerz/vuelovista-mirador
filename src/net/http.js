@@ -12,31 +12,6 @@ import { resolveProxyRequest } from './routes.js'
  */
 
 /**
- * @param {string} url
- * @param {HttpFetchOptions} [options]
- * @returns {Promise<Response>}
- */
-async function fetchViaTauri(url, options = {}) {
-  const { invoke } = await import('@tauri-apps/api/core')
-  const resolved = resolveProxyRequest(url)
-  /** @type {{ status: number, headers: Record<string, string>, bodyBase64: string }} */
-  const result = await invoke('proxy_fetch', {
-    url: resolved?.upstreamUrl ?? url,
-    method: options.method || 'GET',
-    headers: {
-      ...(resolved?.headers || {}),
-      ...(options.headers || {}),
-    },
-  })
-
-  const binary = Uint8Array.from(atob(result.bodyBase64), (c) => c.charCodeAt(0))
-  return new Response(binary, {
-    status: result.status,
-    headers: result.headers || {},
-  })
-}
-
-/**
  * Normalize CapacitorHttp `data` into something `fetch.Response` can wrap.
  * Native iOS often returns: parsed JSON objects, plain JSON strings, or base64
  * for arraybuffer — never assume one shape.
@@ -120,7 +95,7 @@ async function fetchViaCapacitor(url, options = {}) {
 /**
  * Cross-runtime fetch. Proxy paths (`/adsblol-proxy`, `/adsbdb-proxy`,
  * `/standing-data-proxy`) stay relative on web (Vite / serve.mjs). On
- * Capacitor/Tauri they are rewritten to upstream hosts; request headers
+ * Capacitor they are rewritten to upstream hosts; request headers
  * (e.g. user-entered API keys) are forwarded.
  *
  * @param {string} url
@@ -130,9 +105,6 @@ async function fetchViaCapacitor(url, options = {}) {
 export async function httpFetch(url, options = {}) {
   const runtime = getRuntime()
 
-  if (runtime === 'tauri') {
-    return fetchViaTauri(url, options)
-  }
   if (runtime === 'capacitor') {
     return fetchViaCapacitor(url, options)
   }
