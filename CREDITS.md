@@ -27,8 +27,7 @@ Archived educational integrations (not shipped): see [`edu/`](edu/) — includes
 - [Leaflet](https://leafletjs.com) — Map engine
 - [Vite](https://vite.dev) — Build tooling
 - [Capacitor](https://capacitorjs.com) — iOS / Android shells
-- [Tauri](https://tauri.app) — Desktop shells
-- [SQLite](https://sqlite.org) — Local-first reference / user data (`@sqlite.org/sqlite-wasm`, `@capacitor-community/sqlite`, `tauri-plugin-sql`)
+- [SQLite](https://sqlite.org) — Local-first reference / user data (`@sqlite.org/sqlite-wasm`, `@capacitor-community/sqlite`)
 
 ## Aeronautical reference data (planned)
 

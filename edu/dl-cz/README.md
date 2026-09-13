@@ -51,8 +51,6 @@ import { DL_PROXY_PREFIX, DL_UPSTREAM } from '../../edu/dl-cz/dlProxy.config.js'
 // ROUTES: { kind: 'dl', prefix: DL_PROXY_PREFIX, upstream: DL_UPSTREAM, headers: {} }
 ```
 
-In `src-tauri/src/lib.rs` `host_allowed`, allow `www.dl.cz`.
-
 ### 3. Use it
 
 **Licensed charts** → enable **DL.cz Czechia VFR** → paste your key → turn the

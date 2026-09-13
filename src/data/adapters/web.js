@@ -1,7 +1,7 @@
 /**
  * Web SQLite via wasm + JsStorageDb (localStorage-backed, no COOP/COEP).
  * Suitable for settings/tracks foundation; large reference dumps should use
- * native SQLite on Capacitor/Tauri or a later OPFS worker.
+ * native SQLite on Capacitor or a later OPFS worker.
  * @returns {Promise<import('../types.js').DbAdapter>}
  */
 export async function openWebDatabase() {

@@ -88,19 +88,6 @@ android/captures/
 *.hprof
 *.iml
 
-# --- Tauri / Rust ---
-src-tauri/target/
-src-tauri/gen/
-# Wix / NSIS leftovers from Windows packaging
-*.wixpdb
-*.msi
-*.nsis
-*.AppImage
-*.deb
-*.rpm
-*.dmg
-*.exe
-
 # --- Local SQLite / data dumps (runtime DBs, not schema.sql) ---
 *.db
 *.db-journal

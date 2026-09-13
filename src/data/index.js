@@ -35,10 +35,7 @@ export async function openDatabase() {
   }
 
   const runtime = getRuntime()
-  if (runtime === 'tauri') {
-    const { openTauriDatabase } = await import('./adapters/tauri.js')
-    adapter = await openTauriDatabase()
-  } else if (runtime === 'capacitor') {
+  if (runtime === 'capacitor') {
     const { openCapacitorDatabase } = await import('./adapters/capacitor.js')
     adapter = await openCapacitorDatabase()
   } else {
